@@ -15,6 +15,10 @@ Flag unix
   Description: build the UNIX library
   Default: false
 
+Flag ns3
+  Description: build the ns3 library
+  Default: false
+
 Library cstruct
   Path:       lib/
   Modules:    Cstruct
@@ -37,7 +41,15 @@ Library unix_cstruct
   Findlibname: unix
   Findlibparent: cstruct
   Modules: Unix_cstruct
- 
+
+Library ns3_cstruct
+  Build$:             flag(ns3)
+  Path:       ns3/
+  BuildDepends: cstruct,unix
+  Findlibname: ns3
+  Findlibparent: cstruct
+  Modules: Ns3_cstruct
+  
 Library "cstruct-syntax"
   FindlibName: syntax
   FindlibParent: cstruct

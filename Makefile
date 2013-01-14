@@ -5,6 +5,11 @@ UNIX = --enable-unix
 ifeq ($(MIRAGE_OS),xen)
 UNIX= --disable-unix
 endif
+NS3 = --disable-ns3
+ifeq ($(MIRAGE_OS),ns3)
+NS3= --enable-ns3
+endif
+
 
 NAME=cstruct
 J=4
@@ -13,7 +18,7 @@ setup.ml: _oasis
 	oasis setup
 
 setup.data: setup.ml
-	ocaml setup.ml -configure $(LWT) $(UNIX)
+	ocaml setup.ml -configure $(LWT) $(UNIX) $(NS3)
 
 build: setup.data setup.ml
 	ocaml setup.ml -build -j $(J)
