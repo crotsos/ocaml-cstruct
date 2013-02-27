@@ -1,7 +1,7 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: b56e8ebccd4c729055c9ea8e14168898) *)
+(* DO NOT EDIT (digest: 0121e3cbbee13574db469f99ee9e58a2) *)
 module OASISGettext = struct
-(* # 21 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/oasis/OASISGettext.ml" *)
+(* # 21 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/oasis/OASISGettext.ml" *)
 
   let ns_ str =
     str
@@ -24,7 +24,7 @@ module OASISGettext = struct
 end
 
 module OASISExpr = struct
-(* # 21 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/oasis/OASISExpr.ml" *)
+(* # 21 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/oasis/OASISExpr.ml" *)
 
 
 
@@ -116,7 +116,7 @@ end
 
 # 117 "myocamlbuild.ml"
 module BaseEnvLight = struct
-(* # 21 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/base/BaseEnvLight.ml" *)
+(* # 21 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/base/BaseEnvLight.ml" *)
 
   module MapString = Map.Make(String)
 
@@ -214,7 +214,7 @@ end
 
 # 215 "myocamlbuild.ml"
 module MyOCamlbuildFindlib = struct
-(* # 21 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildFindlib.ml" *)
+(* # 21 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildFindlib.ml" *)
 
   (** OCamlbuild extension, copied from 
     * http://brion.inria.fr/gallium/index.php/Using_ocamlfind_with_ocamlbuild
@@ -335,7 +335,7 @@ module MyOCamlbuildFindlib = struct
 end
 
 module MyOCamlbuildBase = struct
-(* # 21 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildBase.ml" *)
+(* # 21 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildBase.ml" *)
 
   (** Base functions for writing myocamlbuild.ml
       @author Sylvain Le Gall
@@ -351,7 +351,7 @@ module MyOCamlbuildBase = struct
   type name = string 
   type tag = string 
 
-(* # 56 "/Users/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildBase.ml" *)
+(* # 56 "/local/scratch/cr409/.opam/4.00.1+mirage-ns3-direct/build/oasis-mirage.0.3.0a/src/plugins/ocamlbuild/MyOCamlbuildBase.ml" *)
 
   type t =
       {
@@ -510,6 +510,7 @@ let package_default =
      MyOCamlbuildBase.lib_ocaml =
        [
           ("cstruct", ["lib"]);
+          ("async_cstruct", ["async"]);
           ("lwt_cstruct", ["lwt"]);
           ("unix_cstruct", ["unix"]);
           ("ns3_cstruct", ["ns3"]);
@@ -521,12 +522,18 @@ let package_default =
           (["oasis_library_cstruct_ccopt"; "compile"],
             [(OASISExpr.EBool true, S [A "-ccopt"; A "-O3"])])
        ];
-     includes = [("unix", ["lib"]); ("ns3", ["lib"]); ("lwt", ["lib"])];
+     includes =
+       [
+          ("unix", ["lib"]);
+          ("ns3", ["lib"]);
+          ("lwt", ["lib"]);
+          ("async", ["lib"])
+       ];
      }
   ;;
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default package_default;;
 
-# 531 "myocamlbuild.ml"
+# 538 "myocamlbuild.ml"
 (* OASIS_STOP *)
 Ocamlbuild_plugin.dispatch dispatch_default;;
