@@ -1,3 +1,19 @@
+0.7.1 (06-Mar-2013):
+* Add `Async_cstruct.Pipe` to map pipes of `Cstruct` buffers to strings or `Bigsubstring`.
+
+0.7.0 (25-Feb-2013):
+
+* Add zero-copy conversion functions to/from the Core `Bigsubstring`.
+* Add an `of_string` function to simplify the construction from OCaml values.
+* Add Async interface to interoperate with Jane Street Core code.
+
+0.6.2 (08-Feb-2013):
+
+* Add experimental `cstruct.obuild` for the `obuild` build tool.
+* Use bounds checked version of all functions in the external interface.
+* Expose the `Cstruct.debug` to dump internal state of a buffer to a string.
+* Add `set_len` and `add_len` to manipulate the total-length field directly.
+
 0.6.1 (20-Dec-2012):
 * Add `sendto`, `read` and `recvfrom` functions to the Lwt subpackage.
 

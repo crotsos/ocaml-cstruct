@@ -1,6 +1,7 @@
 all: build
 
 LWT ?= $(shell if ocamlfind query lwt.unix >/dev/null 2>&1; then echo --enable-lwt; else echo --disable-lwt; fi)
+ASYNC ?= $(shell if ocamlfind query async >/dev/null 2>&1; then echo --enable-async; else echo --disable-async; fi)
 UNIX = --enable-unix
 ifeq ($(MIRAGE_OS),xen)
 UNIX= --disable-unix
@@ -18,7 +19,7 @@ setup.ml: _oasis
 	oasis setup
 
 setup.data: setup.ml
-	ocaml setup.ml -configure $(LWT) $(UNIX) $(NS3)
+	ocaml setup.ml -configure $(LWT) $(UNIX) $(ASYNC) $(NS3)
 
 build: setup.data setup.ml
 	ocaml setup.ml -build -j $(J)
